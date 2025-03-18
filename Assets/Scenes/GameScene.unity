@@ -955,6 +955,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 225e42741bb43d745b1be92811e44431, type: 3}
+--- !u!114 &1758511369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3418024464506946069, guid: 225e42741bb43d745b1be92811e44431, type: 3}
+  m_PrefabInstance: {fileID: 1609738860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430adcaa220c3bf46a4761a084b34e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2092199063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1035,6 +1046,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clear Counter
       objectReference: {fileID: 0}
+    - target: {fileID: 3418024464506946069, guid: 225e42741bb43d745b1be92811e44431, type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418024464506946069, guid: 225e42741bb43d745b1be92811e44431, type: 3}
+      propertyPath: secondCounter
+      value: 
+      objectReference: {fileID: 1758511369}
     - target: {fileID: 3418024464506946069, guid: 225e42741bb43d745b1be92811e44431, type: 3}
       propertyPath: kitchenObjectSO
       value: 
