@@ -6,36 +6,37 @@ using UnityEngine;
 public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
-    private ClearCounter clearCounter; //to know where the obj is
+
+    private IKitchenObjectParent kitchenObjParent; //to know where the obj is
 
     public KitchenObjectSO GetKitchenObjectSO()
     {
         return kitchenObjectSO;
     }
 
-    public void SetClearCounter(ClearCounter clearCounter)
+    public void SetKitchenObjParent(IKitchenObjectParent kitchenObjParent)
     {
-        if (this.clearCounter != null) //old parent
+        if (this.kitchenObjParent != null) //old parent
         {
-            this.clearCounter.ClearKitchenObject();
+            this.kitchenObjParent.ClearKitchenObject();
         }
 
         //new parent
-        this.clearCounter = clearCounter;
+        this.kitchenObjParent = kitchenObjParent;
 
-        if (clearCounter.HasKitchenObject())
+        if (kitchenObjParent.HasKitchenObject())
         {
-            Debug.LogError("Counter Already has a kitchen object");
+            Debug.LogError("IKitchenObjParent Already has a kitchen object");
         }
 
-        clearCounter.SetKitchenObject(this);//change current counter to new one
+        kitchenObjParent.SetKitchenObject(this);//change current kitchenObj to new one
 
-        transform.parent = clearCounter.GetKitchenObjectFollowTransform(); // the parent of the kitchen obj changed
+        transform.parent = kitchenObjParent.GetKitchenObjectFollowTransform(); // the parent of the kitchen obj changed
         transform.localPosition = Vector3.zero;
     }
 
-    public ClearCounter GetClearCounter()
+    public IKitchenObjectParent GetKitchenObjParent()
     {
-        return clearCounter;
+        return kitchenObjParent;
     }
 }
