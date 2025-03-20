@@ -28,5 +28,32 @@ public class ClearCounter : BaseCounter
         //Clear Counter will not spawn anything
         //just pickup and drop
 
+        if (!HasKitchenObject())
+        {
+            //There is no kitchen obj
+            if (player.HasKitchenObject())
+            {
+                //Player is carrying sth
+                player.GetKitchenObject().SetKitchenObjParent(this);
+            }
+            else
+            {
+                //Player has nothing
+            }
+
+        }
+        else
+        {
+            //There is kitchen Obj
+            if (player.HasKitchenObject())
+            {
+                
+            }
+            else
+            {
+                GetKitchenObject().SetKitchenObjParent(player);
+            }
+        }
+
     }
 }
