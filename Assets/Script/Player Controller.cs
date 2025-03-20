@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     [SerializeField] private float moveSpeed = 7f;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private bool isWalking;
     private Vector3 lastInteractDir;
-    private ClearCounter selectedCounter;
+    private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
 
     private void Awake()
@@ -75,12 +75,12 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         {
             //identifying things this way is much better than using Tags
             //transform is the pointed obj's
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter)) //TryGetComponent will return bool. 
+            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter)) //TryGetComponent will return bool. 
             {
                 //Has ClearCounter
-                if (clearCounter != selectedCounter)
+                if (baseCounter != selectedCounter)
                 {
-                    selectedCounter = clearCounter;
+                    selectedCounter = baseCounter;
 
                     SetSelectedCounnter(selectedCounter);
                 }
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed); // interpolate between two vectors and with a flaot value
     }
 
-    private void SetSelectedCounnter(ClearCounter selectedCounter)
+    private void SetSelectedCounnter(BaseCounter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
         //Invokes when the counter is selected and do the listener function

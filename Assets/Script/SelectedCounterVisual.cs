@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SelectedCounterVisual : MonoBehaviour
 {
-    [SerializeField] private ClearCounter clearCounter; //the counter itself
-    [SerializeField] private GameObject visualGameObject;
+    [SerializeField] private BaseCounter baseCounter; //the counter itself
+    [SerializeField] private GameObject[] visualGameObjectArray;
     private void Start()
     {
         //Listensers should be on Start()because if it is in Awake(), it can happen before the PlayerCOntroller Awake()
@@ -14,7 +14,7 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Player_OnSelectedCounterChanged(object sender, PlayerController.OnSelectedCounterChangedEventArgs e)
     {
-        if (e.selectedCounter==clearCounter)
+        if (e.selectedCounter==baseCounter)
         {
             Show();
         }
@@ -26,11 +26,17 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Show()
     {
-        visualGameObject.SetActive(true);
+        foreach (GameObject visualGameObj in visualGameObjectArray)
+        {
+            visualGameObj.SetActive(true);
+        }
     }
 
     private void Hide()
     {
-        visualGameObject?.SetActive(false);
+        foreach (GameObject visualGameObj in visualGameObjectArray)
+        {
+            visualGameObj.SetActive(false);
+        }
     }
 }
