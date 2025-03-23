@@ -6,13 +6,21 @@ using UnityEngine;
 public class GameInput : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
+
     public event EventHandler OnInteractAction;
+    public event EventHandler OnInteractAlternateAction;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable(); //Player is the action Map we created.need to enable manually
 
         playerInputActions.Player.Interact.performed += Interact_performed; //in VS , Tab will auto create function for event
+        playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
+    }
+
+    private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInteractAlternateAction?.Invoke(this,EventArgs.Empty);
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
