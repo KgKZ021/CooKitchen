@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter , IHasProgress
 {
+    public static event EventHandler OnAnyCut; //static allows on any of both cutting counter on OnCut, it will need to make obj any time the sound plays
     public event EventHandler<IHasProgress.OnProgressChangeEventArgs> OnProgressChange;
-    
-
     public event EventHandler OnCut;
 
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
@@ -70,6 +69,7 @@ public class CuttingCounter : BaseCounter , IHasProgress
             cuttingProgress++;
 
             OnCut?.Invoke(this,EventArgs.Empty);
+            OnAnyCut?.Invoke(this, EventArgs.Empty);
 
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 

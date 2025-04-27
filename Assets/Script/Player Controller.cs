@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     public static PlayerController Instance { get; private set; }
 
+    public event EventHandler OnPickedSomething;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
@@ -207,6 +208,11 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+
+        if(kitchenObject != null)
+        {
+            OnPickedSomething?.Invoke(this,EventArgs.Empty);
+        }
     }
 
     //get the old parent counter
